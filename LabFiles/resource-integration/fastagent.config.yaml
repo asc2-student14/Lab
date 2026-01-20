@@ -1,0 +1,9 @@
+mcp:
+  servers:
+    inventory:
+      command: "fastmcp" 
+      args:
+        - run
+        - server.py
+
+default_model: gpt-4.1-mini
