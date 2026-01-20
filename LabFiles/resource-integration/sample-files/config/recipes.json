@@ -1,0 +1,56 @@
+{
+  "recipes": {
+    "espresso": {
+      "active": true,
+      "grind_size": 3,
+      "dose_weight": 18.0,
+      "water_temp": 93,
+      "extraction_time": 27,
+      "volume_target": 30
+    },
+    "americano": {
+      "active": true,
+      "espresso_base": true,
+      "hot_water_volume": 120,
+      "water_temp": 85,
+      "cup_size": "medium"
+    },
+    "latte": {
+      "active": true,
+      "espresso_base": true,
+      "milk_volume": 150,
+      "milk_temp": 63,
+      "foam_thickness": 5,
+      "latte_art": "heart"
+    },
+    "cappuccino": {
+      "active": true,
+      "espresso_base": true,
+      "milk_volume": 100,
+      "milk_temp": 65,
+      "foam_ratio": 0.5,
+      "cocoa_dust": true
+    },
+    "macchiato": {
+      "active": true,
+      "espresso_base": true,
+      "milk_volume": 15,
+      "foam_only": true,
+      "cup_size": "small"
+    },
+    "mocha": {
+      "active": false,
+      "espresso_base": true,
+      "chocolate_syrup": 20,
+      "milk_volume": 120,
+      "whipped_cream": true
+    }
+  },
+  "customizations": {
+    "allow_size_changes": true,
+    "allow_extra_shots": true,
+    "max_extra_shots": 2,
+    "allow_decaf": true,
+    "allow_milk_alternatives": ["oat", "almond", "soy"]
+  }
+}

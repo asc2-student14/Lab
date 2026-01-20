@@ -1,0 +1,17 @@
+2024-10-21 08:23:16 [ERROR] E001: Insufficient beans in hopper
+2024-10-21 08:23:16 [INFO] Attempting hopper refill detection
+2024-10-21 08:23:17 [ERROR] E001: Still insufficient beans - manual intervention required
+2024-10-21 08:24:32 [INFO] Bean level restored - resuming operations
+2024-10-21 09:45:22 [ERROR] E004: Boiler temperature too low (85°C)
+2024-10-21 09:45:23 [INFO] Initiating boiler heating sequence
+2024-10-21 09:46:15 [INFO] Boiler temperature normalized (93°C)
+2024-10-21 11:23:45 [ERROR] E003: Grinder motor overcurrent detected
+2024-10-21 11:23:46 [INFO] Grinder motor stopped for safety
+2024-10-21 11:23:47 [INFO] Clearing grinder jam
+2024-10-21 11:24:12 [INFO] Grinder motor test successful - resuming operations
+2024-10-21 14:56:33 [WARN] W002: Water reservoir below 10%
+2024-10-21 14:56:34 [INFO] Water refill reminder sent to maintenance app
+2024-10-21 15:12:08 [INFO] Water reservoir refilled to 98%
+2024-10-21 16:45:19 [ERROR] E005: Milk reservoir empty
+2024-10-21 16:45:20 [INFO] Milk-based drinks temporarily unavailable
+2024-10-21 16:52:44 [INFO] Milk reservoir refilled - all drinks available

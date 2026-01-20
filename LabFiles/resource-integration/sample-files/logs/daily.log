@@ -1,0 +1,28 @@
+2024-10-21 08:15:23 [INFO] System startup initiated
+2024-10-21 08:15:24 [INFO] Hardware calibration check passed
+2024-10-21 08:15:25 [INFO] Water reservoir: 85% full
+2024-10-21 08:15:25 [INFO] Bean hopper: 92% full  
+2024-10-21 08:15:25 [INFO] Milk reservoir: 78% full
+2024-10-21 08:15:26 [INFO] System ready for service
+2024-10-21 08:23:15 [INFO] Order received: Latte, Medium
+2024-10-21 08:23:16 [INFO] Grinding beans for espresso base
+2024-10-21 08:23:18 [INFO] Dosing 18.0g grounds
+2024-10-21 08:23:20 [INFO] Extracting espresso shot
+2024-10-21 08:23:47 [INFO] Espresso extraction complete: 30ml in 27s
+2024-10-21 08:23:48 [INFO] Steaming milk to 63°C
+2024-10-21 08:23:55 [INFO] Milk steaming complete
+2024-10-21 08:23:58 [INFO] Pouring latte with heart pattern
+2024-10-21 08:24:02 [INFO] Order complete: Latte delivered
+2024-10-21 08:31:45 [INFO] Order received: Cappuccino, Small
+2024-10-21 08:31:46 [INFO] Grinding beans for espresso base
+2024-10-21 08:31:48 [INFO] Dosing 18.0g grounds
+2024-10-21 08:31:50 [INFO] Extracting espresso shot
+2024-10-21 08:32:17 [INFO] Espresso extraction complete: 30ml in 27s
+2024-10-21 08:32:18 [INFO] Steaming milk to 65°C with heavy foam
+2024-10-21 08:32:26 [INFO] Milk steaming complete
+2024-10-21 08:32:29 [INFO] Pouring cappuccino with cocoa dust
+2024-10-21 08:32:33 [INFO] Order complete: Cappuccino delivered
+2024-10-21 08:45:12 [WARN] Bean hopper below 20% - refill recommended
+2024-10-21 08:52:30 [INFO] Bean hopper refilled - level: 95%
+2024-10-21 09:15:00 [INFO] Auto-clean cycle initiated
+2024-10-21 09:20:15 [INFO] Auto-clean cycle complete

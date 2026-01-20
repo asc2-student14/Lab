@@ -1,0 +1,9 @@
+mcp:
+  servers:
+    tickets:
+      command: fastmcp
+      args:
+        - run
+        - ticket_mcp_server.py
+
+default_model: gpt-4.1-mini

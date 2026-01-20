@@ -1,0 +1,9 @@
+mcp:
+  servers:
+    seasonal_menu:
+      command: fastmcp
+      args:
+        - run
+        - seasonal_menu_server.py
+
+default_model: gpt-4.1-mini

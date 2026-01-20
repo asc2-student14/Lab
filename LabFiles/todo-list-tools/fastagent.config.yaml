@@ -1,0 +1,9 @@
+mcp:
+  servers:
+    todo:
+      command: fastmcp
+      args:
+        - run
+        - todo_server.py
+
+default_model: gpt-4.1-mini

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmed - BeanBotics</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; text-align: center; }
+        .success { background: #e8f5e8; border: 1px solid #4caf50; padding: 30px; border-radius: 5px; }
+        .order-details { background: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="success">
+        <h1>🎉 Order Confirmed!</h1>
+        <p>Thank you, {{ order.customer_name }}! Your BeanBotics coffee is being prepared.</p>
+        
+        <div class="order-details">
+            <h3>Order #{{ order.id }}</h3>
+            <p><strong>Item:</strong> {{ order.item.name }} ({{ order.size }})</p>
+            <p><strong>Total:</strong> ${{ "%.2f"|format(order.total_price) }}</p>
+            <p><strong>Order Time:</strong> {{ order.order_time.strftime('%I:%M %p') }}</p>
+        </div>
+        
+        <p>Our robot barista will have your order ready in 3-5 minutes!</p>
+        <p><a href="{{ url_for('create_order') }}">← Order Another Coffee</a></p>
+    </div>
+</body>
+</html>

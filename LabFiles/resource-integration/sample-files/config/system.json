@@ -1,0 +1,51 @@
+{
+  "system": {
+    "name": "BeanBotics RB-3000",
+    "version": "2.1.4",
+    "serial_number": "BB3K-2024-001",
+    "installation_date": "2024-03-15"
+  },
+  "hardware": {
+    "robotic_arm": {
+      "model": "Precision6DOF",
+      "reach": "600mm",
+      "payload": "2.5kg",
+      "repeatability": "±0.1mm"
+    },
+    "grinder": {
+      "type": "Conical Burr",
+      "hopper_capacity": "500g",
+      "grind_settings": 40,
+      "motor_power": "150W"
+    },
+    "boiler": {
+      "type": "Dual Thermoblock",
+      "capacity": "1.8L",
+      "max_temperature": "110C",
+      "pressure": "15 bar"
+    }
+  },
+  "network": {
+    "wifi": {
+      "enabled": true,
+      "ssid": "BeanBotics_Lab",
+      "encryption": "WPA3"
+    },
+    "ethernet": {
+      "enabled": false,
+      "ip_address": "192.168.1.100"
+    }
+  },
+  "operation": {
+    "max_daily_cups": 200,
+    "auto_clean_interval": "24h",
+    "idle_timeout": "30min",
+    "energy_save_mode": true
+  },
+  "maintenance": {
+    "descale_interval": "30 days",
+    "filter_replacement": "90 days",
+    "calibration_check": "7 days",
+    "last_service": "2024-10-01"
+  }
+}

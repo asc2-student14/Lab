@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Menu - BeanBotics</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .clear-btn { background: #d32f2f; color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; margin: 20px 0; }
+        .back-link { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🛠️ Debug Menu</h1>
+    
+    <h2>Orders ({{ orders|length }} total)</h2>
+    
+    {% if orders %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Item</th>
+                <th>Size</th>
+                <th>Total</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.customer_name }}</td>
+                <td>{{ order.item_name }}</td>
+                <td>{{ order.size }}</td>
+                <td>${{ "%.2f"|format(order.total_price) }}</td>
+                <td>{{ order.order_time.strftime('%m/%d %I:%M %p') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <form method="POST" action="{{ url_for('clear_orders') }}" onsubmit="return confirm('Are you sure you want to clear all orders?')">
+        <button type="submit" class="clear-btn">Clear All Orders</button>
+    </form>
+    {% else %}
+    <p>No orders found.</p>
+    {% endif %}
+    
+    <div class="back-link">
+        <a href="{{ url_for('create_order') }}">← Back to Order Form</a>
+    </div>
+</body>
+</html>
