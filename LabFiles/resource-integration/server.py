@@ -21,6 +21,7 @@ mcp = FastMCP("InventoryServer")
 DB_FILE = "inventory.db"
 
 
+@mcp.resource("inventory://summary")
 async def get_inventory_summary() -> dict:
     """Provides overall inventory statistics"""
     conn = sqlite3.connect(DB_FILE)
@@ -45,6 +46,7 @@ async def get_inventory_summary() -> dict:
     }
 
 
+@mcp.resource("inventory://category/{cat}")
 async def get_category_summary(cat: str) -> str:
     """Dynamic stats for any category"""
     conn = sqlite3.connect(DB_FILE)
@@ -71,6 +73,7 @@ async def get_category_summary(cat: str) -> str:
            f"Total Value: ${result[2]:.2f}"
 
 
+@mcp.resource("inventory://category/{cat}/item/{item_id}")
 async def get_item_in_category(cat: str, item_id: int) -> dict:
     """Get detailed information about a specific item in a category"""
     conn = sqlite3.connect(DB_FILE)
@@ -99,6 +102,7 @@ async def get_item_in_category(cat: str, item_id: int) -> dict:
     }
 
 
+@mcp.resource("inventory://item_summary/{item_id}")
 async def get_item_summary(item_id: int) -> dict:
     """Comprehensive item summary combining item details and category stats"""
     conn = sqlite3.connect(DB_FILE)
