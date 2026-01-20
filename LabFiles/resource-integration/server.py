@@ -125,7 +125,7 @@ def _get_all_items() -> dict:
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT id, name, category, price 
+        SELECT id, name, category, price, quantity
         FROM items 
         ORDER BY category, name
     """)
@@ -133,12 +133,29 @@ def _get_all_items() -> dict:
     conn.close()
     return {
         "items": [
-            {"id": item[0], "name": item[1], "category": item[2], "price": f"${item[3]:.2f}"}
+            {"id": item[0], "name": item[1], "category": item[2], "price": f"${item[3]:.2f}", "quantity": item[4]}
             for item in items
         ],
         "usage_hint": "Use item IDs with inventory://category/{cat}/item/{item_id} or inventory://item_summary/{item_id}"
     }
 
+def _get_items_with_low_stock( low_stock_threshold: int = 20 ) -> dict:
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT id, name, quantity,category, price
+        FROM items
+        WHERE quantity < ?
+    """, (low_stock_threshold,))
+    items = cursor.fetchall()
+    conn.close()
+    return {
+        "items": [
+            {"id": item[0], "name": item[1], "quantity": item[2], "price": item[3], "category": item[4]}
+            for item in items
+        ],
+        "usage_hint": "Use item IDs with inventory://category/{cat}/item/{item_id} or inventory://item_summary/{item_id}"
+    }
 
 # ===== RESOURCES =====
 
@@ -177,6 +194,10 @@ async def get_all_items() -> dict:
     """Lists all items with their IDs for easy reference"""
     return _get_all_items()
 
+@mcp.resource("inventory://items_with_low_stock/{low_stock_threshold}")
+async def get_items_with_low_stock( low_stock_threshold: int = 20 ) -> dict:
+    """Get items with low stock"""
+    return _get_items_with_low_stock( low_stock_threshold )
 
 # ===== TOOLS (for agent interaction) =====
 
@@ -209,6 +230,10 @@ async def get_item(item_id: int) -> dict:
     """Get details for a specific item by ID"""
     return _get_item_summary(item_id)
 
+@mcp.tool()
+async def get_items_with_low_stock( low_stock_threshold: int = 20 ) -> dict:
+    """Get items with low stock"""
+    return _get_items_with_low_stock( low_stock_threshold )
 
 if __name__ == "__main__":
     mcp.run()
