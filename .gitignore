@@ -4,3 +4,4 @@ __pycache__
 fastagent.secrets.yaml
 **/fastagent.secrets.yaml
 **/fastagent.jsonl
+*.db
