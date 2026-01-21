@@ -7,7 +7,27 @@ app.config['SECRET_KEY'] = 'beanbotics-secret-key'
 
 DB_FILE = "orders.db"
 
-def get_menu_items():
+def get_menu_items() -> list[dict[str, int | str]]:
+    """Retrieve all menu items from the database.
+
+    Fetches all available menu items from the menu_items table,
+    including their IDs, names, and descriptions.
+
+    Returns:
+        list[dict[str, int | str]]: A list of dictionaries, where each 
+            dictionary contains:
+            - 'id' (int): The unique identifier of the menu item
+            - 'name' (str): The display name of the menu item
+            - 'description' (str): A brief description of the item
+
+    Raises:
+        sqlite3.Error: If there's an issue connecting to or querying the database.
+
+    Example:
+        >>> items = get_menu_items()
+        >>> print(items[0])
+        {'id': 1, 'name': 'Espresso', 'description': 'Strong Italian coffee'}
+    """
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute("SELECT id, name, description FROM menu_items")
