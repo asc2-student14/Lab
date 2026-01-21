@@ -4,8 +4,8 @@ import os
 # Initialize the FastMCP server
 mcp = FastMCP("CodingPromptsServer")
 
-# Directory containing prompt template files
-PROMPTS_DIR = os.path.join(os.path.dirname(__file__), "prompts")
+# Directory containing prompt template files (one level up from solutions/)
+PROMPTS_DIR = os.path.join(os.path.dirname(__file__), "..", "prompts")
 
 @mcp.prompt()
 async def document_function(function_name: str = "") -> str:
