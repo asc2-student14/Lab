@@ -8,6 +8,31 @@ mcp = FastMCP("CodingPromptsServer")
 PROMPTS_DIR = os.path.join(os.path.dirname(__file__), "..", "prompts")
 
 @mcp.prompt()
+async def support_ticket_triage(ticket_id: str, issue_description: str, provided_info: str) -> str:
+    """Triage a support ticket and ensure complete information gathering."""
+    with open(os.path.join(PROMPTS_DIR, 'support_ticket_triage.prompt.md')) as f:
+        template = f.read()
+        return template.replace("{ticket_id}", ticket_id).replace("{issue_description}", issue_description).replace("{provided_info}", provided_info)
+
+@mcp.prompt()
+async def escalation_decision(
+    ticket_id: str,
+    issue_summary: str,
+    customer_tier: str = "standard",
+    previous_tickets: str = "none",
+    troubleshooting_attempted: str = "none"
+) -> str:
+    """Make consistent escalation decisions based on clear criteria."""
+    with open(os.path.join(PROMPTS_DIR, 'escalation_decision.prompt.md')) as f:
+        template = f.read()
+        template = template.replace("{ticket_id}", ticket_id)
+        template = template.replace("{issue_summary}", issue_summary)
+        template = template.replace("{customer_tier}", customer_tier)
+        template = template.replace("{previous_tickets}", previous_tickets)
+        template = template.replace("{troubleshooting_attempted}", troubleshooting_attempted)
+        return template
+
+@mcp.prompt()
 async def document_function(function_name: str = "") -> str:
     """Generate documentation standards for Python functions."""
     with open(os.path.join(PROMPTS_DIR, 'document_function.prompt.md')) as f:
