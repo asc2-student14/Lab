@@ -6,7 +6,7 @@ when working on complex, multi-step projects.
 """
 from fastmcp import FastMCP
 from dataclasses import dataclass
-from typing import Any, List
+from typing import Any, List, Optional
 from pathlib import Path
 import yaml
 
@@ -21,6 +21,7 @@ class Todo:
     id: int
     todo: str
     completed: bool = False
+    parent_id: Optional[int] = None
 
 class TodoList:
     def __init__(self):
@@ -31,8 +32,10 @@ class TodoList:
         self.todos.clear()
         self.next_id = 1
     
-    def add(self, todo: str) -> Todo:
-        new_todo = Todo(id=self.next_id, todo=todo)
+    def add(self, todo: str, parent_id: Optional[int] = None) -> Todo:
+        if parent_id is not None and parent_id not in self.todos:
+            raise ValueError(f"Parent todo with id {parent_id} not found")
+        new_todo = Todo(id=self.next_id, todo=todo, parent_id=parent_id)
         self.todos[self.next_id] = new_todo
         self.next_id += 1
         return new_todo
@@ -45,9 +48,14 @@ class TodoList:
 todo_list = TodoList()
 
 @mcp.tool()
-def add_todo(todo: str) -> Todo:
-    """Add a new todo item."""
-    return todo_list.add(todo)
+def add_todo(todo: str, parent_id: Optional[int] = None) -> Todo:
+    """Add a new todo item, optionally as a subtask of another todo.
+    
+    Args:
+        todo: The todo item text
+        parent_id: Optional ID of the parent todo to make this a subtask
+    """
+    return todo_list.add(todo, parent_id)
 
 @mcp.tool()
 def list_todos() -> List[Todo]:
@@ -63,6 +71,21 @@ def complete_todo(todo_id: int) -> Todo:
 def clear_list() -> None:
     """Clear all todo items."""
     return todo_list.clear()
+
+
+@mcp.tool()
+def get_subtasks(parent_id: int) -> List[Todo]:
+    """Get all subtasks of a specific todo item.
+    
+    Args:
+        parent_id: ID of the parent todo
+    
+    Returns:
+        List of Todo items that are subtasks of the specified parent
+    """
+    if parent_id not in todo_list.todos:
+        raise ValueError(f"Todo with id {parent_id} not found")
+    return [todo for todo in todo_list.todos.values() if todo.parent_id == parent_id]
 
 
 @mcp.tool()
